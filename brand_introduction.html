@@ -1,0 +1,164 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link href="https://mall.cangniaowl.com/static/css/base.css" rel="stylesheet">
+    <style>
+        img {
+            vertical-align: bottom
+        }
+
+        .prism-player .prism-big-play-btn {
+            transform: scale(0.6);
+            left: 0px !important;
+            right: 0px !important;
+            top: 0px !important;
+            bottom: 0px !important;
+            margin: auto;
+        }
+
+        .sdf_jh_deert span {
+            border-bottom: 1px solid #333;
+        }
+    </style>
+</head>
+
+<body> <img src="http://img.cangniaowl.com/anru/anru_a.jpg" class="w100">
+    <section class="pd pt10 pm10">
+
+        <!--        <div id="J_prismPlayer" class="prism-player"></div>-->
+        <section class="ov">
+            <div id="id_test_video" style="width:100%; height:auto;"></div>
+        </section>
+
+
+        <p class="cen pt10 sdf_jh_deert">
+            <span class="fz12">观看视频</span>
+        </p>
+    </section> <img src="http://img.cangniaowl.com/anru/anru_b.jpg" class="w100"> <img src="http://img.cangniaowl.com/anru/anru_c.jpg" class="w100"> <img src="http://img.cangniaowl.com/anru/anru_d.jpg" class="w100"> <img src="http://img.cangniaowl.com/anru/anru_e.jpg" class="w100"> <img src="http://img.cangniaowl.com/anru/anru_f.jpg" class="w100"> <img src="http://img.cangniaowl.com/anru/anru_g.jpg" class="w100">
+    <script src="https://mall.cangniaowl.com/static/js/jquery-1.11.3.min.js"></script>
+    <script src="//imgcache.qq.com/open/qcloud/video/vcplayer/TcPlayer-2.2.1.js" charset="utf-8"></script>;
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+        var player = new TcPlayer('id_test_video', {
+            "mp4": "http://img.cangniaowl.com/video/anrou.mp4", //请替换成实际可用的播放地址
+            "autoplay": true, //iOS下safari浏览器，以及大部分移动端浏览器是不开放视频自动播放这个能力的
+            "coverpic": "http://img.cangniaowl.com/anru/shiping.jpg",
+            "height": '250' //视频的显示高度，请尽量使用视频分辨率高度
+        });
+
+
+
+        $(function() {
+
+            var sd_us = window.location.href,
+                getwxsign = {}
+            getwxsign.shop_id = 230
+            getwxsign.url = sd_us
+            ajax_s("material/getwxsign", getwxsign, function(datawe) {
+
+
+
+                wx.config({
+                    debug: false,
+                    appId: datawe.data.appId,
+                    timestamp: datawe.data.timestamp,
+                    nonceStr: datawe.data.nonceStr,
+                    signature: datawe.data.signature,
+                    jsApiList: [
+                        'checkJsApi',
+                        'onMenuShareTimeline',
+                        'onMenuShareAppMessage',
+                        'onMenuShareQQ',
+                        'onMenuShareWeibo',
+                        'onMenuShareQZone',
+                        'hideMenuItems',
+                        'showMenuItems',
+                        'hideAllNonBaseMenuItem',
+                        'showAllNonBaseMenuItem',
+                        'translateVoice',
+                        'startRecord',
+                        'stopRecord',
+                        'onVoiceRecordEnd',
+                        'playVoice',
+                        'onVoicePlayEnd',
+                        'pauseVoice',
+                        'stopVoice',
+                        'uploadVoice',
+                        'downloadVoice',
+                        'chooseImage',
+                        'previewImage',
+                        'uploadImage',
+                        'downloadImage',
+                        'getNetworkType',
+                        'openLocation',
+                        'getLocation',
+                        'hideOptionMenu',
+                        'showOptionMenu',
+                        'closeWindow',
+                        'scanQRCode',
+                        'chooseWXPay',
+                        'openProductSpecificView',
+                        'addCard',
+                        'chooseCard',
+                        'openCard'
+                    ]
+                });
+
+
+                wx.ready(function() {
+                    wx.onMenuShareTimeline({
+                        title: "安茹皮肤的呵护专家", // 分享标题
+                        link: "https://api.cangniaowl.com/brand_introduction.html", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                        imgUrl: "http://img.cangniaowl.com/anru/jiesao_logo.jpg", // 分享图标
+                        success: function() {
+
+                        },
+                        cancel: function() {
+
+                        }
+                    });
+                    wx.onMenuShareAppMessage({
+                        title: "安茹皮肤的呵护专家",
+                        desc: "专注面部护理15年，坚持把肌肤还给自然。",
+                        link: "https://api.cangniaowl.com/brand_introduction.html", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                        imgUrl: "http://img.cangniaowl.com/anru/jiesao_logo.jpg", // 分享图标
+                        trigger: function(res) {
+
+                        },
+                        success: function(res) {
+
+                        },
+                        cancel: function(res) {
+
+                        }
+                    });
+                })
+
+
+
+
+            })
+        })
+
+
+
+        function ajax_s(url, data_d, call) {
+            $.ajax({
+                type: 'POST',
+                url: "https://api.cangniaowl.com/" + url,
+                data: data_d,
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                dataType: 'json',
+                success: function(data) {
+                    call(data)
+                },
+                error: function(res) {
+                    alert("请求失败")
+                }
+            });
+
+        }
+    </script>
+</body></html>

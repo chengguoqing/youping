@@ -1,0 +1,84 @@
+ .sd_tope {
+     line-height: 50px;
+     text-align: center;
+ }
+
+ .dsf_ads_s {
+     width: 28px;
+     height: 30px;
+     background-position: -141px -347px;
+     margin-right: 5px;
+     margin-left: 5px;
+
+ }
+
+ .dsf_ads_s.ab {
+     width: 21px;
+     height: 28px;
+     background-position: -185px -342px;
+ }
+
+ .top_tab_er {
+     line-height: 40px;
+     position: -webkit-sticky;
+     position: sticky;
+     left: 0px;
+     top: 0px;
+     color: #fff;
+     z-index: 1000;
+     background: #D2D2D2;
+     border-bottom: 1px solid #DED7F2
+ }
+
+ .dsf_hh_cdeer.act {
+     background: #EF5151;
+     color: #fff !important
+ }
+
+ .sd_down_e {
+     width: 21px;
+     height: 16px;
+     background-position: -238px -353px;
+     position: absolute;
+     left: 0px;
+     right: 0px;
+     margin: auto;
+     bottom: -15px;
+     display: none
+ }
+
+ .dsf_hh_cdeer.act .sd_down_e {
+     display: block
+ }
+
+ .fenghm_sd {
+     width: 104px;
+     height: 104px;
+ }
+
+ .anlu_logo {
+     width: 57px;
+ }
+
+ .red_e {
+     color: #ed396c
+ }
+
+ .df_jh_dert span {
+     color: #fff;
+     background: #FB6161;
+     padding: 2px 3px;
+     border-radius: 2px
+ }
+
+ .fg_jh_fet {
+     width: 86px;
+
+     height: 100%;
+     border-left: 1px dashed #E4E4E4;
+ }
+
+ .dsf_jh_ceer {
+     white-space: nowrap;
+     padding-left: 0px;
+ }
