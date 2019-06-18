@@ -9,7 +9,7 @@
         
               
 
-        <div class="sd_jh_eder" v-for="sd in 2"  :class="date_e.jige" v-if="date_e.date_e.length<=0">
+        <div class="sd_jh_eder" v-for="sd in date_e.jige"   :class="date_e.jige" v-if="date_e.date_e.length<=0">
             <div class="sd_jH_case bgff">
                 <div class="product_e">
                     <img src="/static/img/product_e.jpg" >
@@ -30,8 +30,8 @@
 
               <section  v-if="date_e.date_e.length>0">
 
-                      <div class="sd_jh_eder mb5" :class="date_e.jige" v-for="(sd,idx) in date_e.date_e" v-if="date_e.geshu==0">
-                         
+                      <div class="sd_jh_eder mb5" :class="date_e.jige" v-for="(sd,idx) in date_e.date_e" v-if="date_e.geshu==0"  @click="hf('commodity_details',{goods_id:sd.goods_id})">
+                        
             <div class="sd_jH_case bgff">
                 <div class="product_e">
                     <img :src="sd.goods_thumb" >
@@ -41,7 +41,7 @@
                 </div>
                 <div class="biaotidrr pl5  pr5 btm_e ">
                       <span class="cz"> 
-                <span class="red">￥{{sd.shop_price}}</span>
+                <span class="red">{{sd.shop_price}}</span>
                     <span class="fr s_jh_dert">总销量{{sd.sales_goods_number}}件</span>
                     </span>
                 
@@ -52,7 +52,7 @@
                   
                   
                   
-                   <div class="sd_jh_eder mb5" :class="date_e.jige" v-for="(sd,idx) in date_e.date_e" v-if="idx<date_e.geshu&&date_e.geshu!=0">
+                   <div class="sd_jh_eder mb5" :class="date_e.jige" v-for="(sd,idx) in date_e.date_e" v-if="idx<date_e.geshu&&date_e.geshu!=0"  @click="hf('commodity_details',{goods_id:sd.goods_id})">
                          
             <div class="sd_jH_case bgff">
                 <div class="product_e">
@@ -63,7 +63,7 @@
                 </div>
                 <div class="biaotidrr pl5  pr5 btm_e ">
                       <span class="cz"> 
-                <span class="red">￥{{sd.shop_price}}</span>
+                <span class="red">{{sd.shop_price}}</span>
                     <span class="fr s_jh_dert">总销量{{sd.sales_goods_number}}件</span>
                     </span>
                 
@@ -101,41 +101,47 @@
 
 </script>
 <style scoped>
-    .sd_jh_eder.aa{
+    .sd_jh_eder.a {
         width: 100%;
         padding-right: 0px;
     }
-    .sd_jh_eder.aa .product_e{
+
+    .sd_jh_eder.a .product_e {
         height: 20rem
     }
-    
-       .sd_jh_eder.ac{
+
+    .sd_jh_eder.aaa {
         width: 33%;
         padding-right: 5px;
     }
-    .sd_jh_eder.ac:nth-child(3n){
+
+    .sd_jh_eder.aaa:nth-child(3n) {
         padding-right: 0px;
     }
-    .sd_jh_eder.ac .s_jh_dert{
+
+    .sd_jh_eder.aaa .s_jh_dert {
         display: none
     }
-    .sd_jh_eder.ac .product_e{
+
+    .sd_jh_eder.aaa .product_e {
         height: 6.7rem
     }
-    
-           .sd_jh_eder.ad{
+
+    .sd_jh_eder.aaaa {
         width: 25%;
         padding-right: 5px;
     }
-        .sd_jh_eder.ad:nth-child(4n){
-        padding-right: 0px;
+
+    .sd_jh_eder.aaaa:nth-child(4n) {
+   
     }
-    .sd_jh_eder.ad .s_jh_dert{
+
+    .sd_jh_eder.aaaa .s_jh_dert {
         display: none
     }
-    .sd_jh_eder.ad .product_e{
+
+    .sd_jh_eder.aaaa .product_e {
         height: 4.9rem
     }
-    
 
 </style>

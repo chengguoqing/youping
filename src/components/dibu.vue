@@ -1,5 +1,5 @@
 <template>
-	<footer class="mui-row dsf_d_dibu btm cen">
+	<footer class="mui-row dsf_d_dibu btm cen"> 
 		<section class="mui-col-xs-3" v-for="(du,idx) in dubvu" :class="idx==kjh_s?'act':''" @click="sd_jheertxc(du.href)">
 			<p class="sd_jhg_ert pr" :class="idx==2?'kefu':''" >
                 

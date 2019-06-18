@@ -39,6 +39,13 @@ html {
     background: #f2f2f2
 }
 
+.f_j {
+    display: inline-block;
+    background: url('https://mall.cangniaowl.com/youpinmeijia/jiuwu.png');
+    background-size: 360px;
+    vertical-align: middle!important
+}
+
 .bgbs {
     background: #fff
 }
@@ -153,7 +160,7 @@ html {
     -moz-flex: 1;
     -o-flex: 1;
     -webkit-box-flex: 1;
-            flex: 1;
+    flex: 1;
     display: block
 }
 
@@ -162,30 +169,30 @@ html {
 }
 
 .box_b {
-      -ms-flex: 2;
+    -ms-flex: 2;
     -moz-flex: 2;
     -o-flex: 2;
     -webkit-box-flex: 2;
-            flex: 2;
+    flex: 2;
     display: block
 }
 
 .box_c {
-      -ms-flex: 3;
+    -ms-flex: 3;
     -moz-flex: 3;
     -o-flex: 3;
     -webkit-box-flex: 3;
-            flex: 3;
+    flex: 3;
     display: block
 }
 
 
 .box_d {
-      -ms-flex: 4;
+    -ms-flex: 4;
     -moz-flex: 4;
     -o-flex: 4;
     -webkit-box-flex: 4;
-            flex: 4;
+    flex: 4;
     display: block
 }
 
@@ -257,12 +264,40 @@ html {
     background-size: 360px;
     vertical-align: middle!important
 }
+
 .f_p {
     display: inline-block;
-    background: url('https://mall.cangniaowl.com/static_youpin/img/bbt.png?v=5');
+    background: url('https://mall.cangniaowl.com/youpinmeijia/img/bbt.png?v=34');
     background-size: 360px;
     vertical-align: middle!important
 }
+.f_p_ert {
+    display: inline-block;
+  background: url('https://mall.cangniaowl.com/static/img/bbt.png?v=30');
+    background-size: 360px;
+    vertical-align: middle!important
+}
+.f_cnp {
+    display: inline-block;
+     background: url('https://mall.cangniaowl.com/static/img/bbt.png?v=30');
+    background-size: 360px;
+    vertical-align: middle!important
+}
+.f_act {
+    display: inline-block;
+    background: url(https://mall.cangniaowl.com/youpinmeijia/sdf_jh_d.png?v=8855);
+    background-size: 360px;
+    vertical-align: middle!important
+}
+
+.f_act_dcert {
+    display: inline-block;
+    background: url(https://mall.cangniaowl.com/static/img/new168/anniu.png?v=90);
+    background-size: 360px;
+    vertical-align: middle!important
+}
+
+
 .f_m {
     display: inline-block;
     background: url('https://mall.cangniaowl.com/static/img/huiyaun.png');
@@ -915,10 +950,12 @@ textarea {
     -webkit-transition: all linear .2s;
     -o-transition: all linear .2s
 }
+
 .gdsan {
     -webkit-transition: all linear .4s;
     transition: all linear .4s;
 }
+
 .gder {
     -webkit-transition: transform linear 0.5s;
     -webkit-transition: -webkit-transform linear0.5s;
@@ -1456,6 +1493,6 @@ a:hover {
     }
 }
 
-.kx{
-    vertical-align: bottom 
+.kx {
+    vertical-align: bottom
 }

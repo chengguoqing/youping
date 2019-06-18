@@ -24,7 +24,7 @@
                 </div>
                 <div class="biaotidrr pl5  pr5 btm_e ">
                       <span class="cz"> 
-                <span class="red">￥{{sd.shop_price}}</span>
+                <span class="red">{{sd.shop_price}}</span>
                     <span class="fr s_jh_dert">总销量{{sd.sales_goods_number}}件</span>
                     </span>
                 
@@ -40,7 +40,7 @@
 <script>
     export default {
         props: {
-            date_e:""
+            date_e: ""
         },
         data() {
             return {
@@ -60,41 +60,45 @@
 
 </script>
 <style scoped>
-    .sd_jh_eder.aa{
+    .sd_jh_eder.a {
         width: 100%;
         padding-right: 0px;
     }
-    .sd_jh_eder.aa .product_e{
+
+    .sd_jh_eder.a .product_e {
         height: 20rem
     }
-    
-       .sd_jh_eder.ac{
+
+    .sd_jh_eder.aaa {
         width: 33%;
         padding-right: 5px;
     }
-    .sd_jh_eder.ac:nth-child(3n){
-        padding-right: 0px;
+
+    .sd_jh_eder.aaa:nth-child(3n) {
+      
     }
-    .sd_jh_eder.ac .s_jh_dert{
+
+    .sd_jh_eder.aaa .s_jh_dert {
         display: none
     }
-    .sd_jh_eder.ac .product_e{
+
+    .sd_jh_eder.aaa .product_e {
         height: 6.7rem
     }
-    
-           .sd_jh_eder.ad{
+
+    .sd_jh_eder.aaaa {
         width: 25%;
         padding-right: 5px;
     }
-        .sd_jh_eder.ad:nth-child(4n){
-        padding-right: 0px;
-    }
-    .sd_jh_eder.ad .s_jh_dert{
+
+
+
+    .sd_jh_eder.aaaa .s_jh_dert {
         display: none
     }
-    .sd_jh_eder.ad .product_e{
+
+    .sd_jh_eder.aaaa .product_e {
         height: 4.9rem
     }
-    
 
 </style>

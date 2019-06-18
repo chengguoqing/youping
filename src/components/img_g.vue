@@ -7,8 +7,8 @@
         </p> 
         
         <p  v-for="sd in date_e.date_e" class="fl sdf_h_deert" :style="{'margin-top':sd.margin_top+'%','margin-left':sd.margin_left+'%',width:sd.width+'%'}">
-        
-       <img :src="sd.img" class="w100  " >
+      
+       <img :src="sd.img" class="w100  " @click="hf(sd.url)">
         </p>
         
         <p class="qc"></p>

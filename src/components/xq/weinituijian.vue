@@ -119,7 +119,7 @@
 
     .df_jh_deer {
         line-height: 1.3;
-        height: 26px;
+        height: 28px;
         transform: scale(0.9)
     }
 

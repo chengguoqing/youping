@@ -95,6 +95,28 @@ import jiamenglist from '@/page/jiamenglist'
 
 import silver_wallet from '@/page/silver_wallet'
 
+
+//168新的
+import act_168 from '@/act_168/index'
+import act_hy from '@/act_168/act_hy'
+import fengxiang from '@/act_168/fengxiang'
+import tiyan from '@/act_168/tiyan'
+import myhaoyou_er from '@/act_168/myhaoyou_er'
+
+//团队信息详情
+import duanduixq from '@/jiuwu/duanduixq'
+
+
+//自提
+import dingdan from '@/ziti/dingdan'
+import pay_success_er from '@/ziti/pay_success_er' 
+
+//会员套卡
+import hexiao from '@/taoka/hexiao'
+import taoka168 from '@/taoka/taoka168'
+import act_hy_tk from '@/taoka/act_hy'
+import fx_hy from '@/taoka/fx_hy'
+
 Vue.use(Router)
 export default new Router({
     //   mode: 'history',
@@ -442,7 +464,64 @@ export default new Router({
             path: '/tixian_ys',
             name: 'tixian_ys',
             component: tixian_ys
-        }
+        },
+        {
+            path: '/act_168',
+            name: 'act_168',
+            component: act_168
+        },
+        {
+            path: '/act_hy',
+            name: 'act_hy',
+            component: act_hy
+        },
+        {
+            path: '/fengxiang',
+            name: 'fengxiang',
+            component: fengxiang
+        },
+        {
+            path: '/tiyan',
+            name: 'tiyan',
+            component: tiyan
+        },
+
+        {
+            path: '/myhaoyou_er',
+            name: 'myhaoyou_er',
+            component: myhaoyou_er
+        }, {
+            path: '/duanduixq',
+            name: 'duanduixq',
+            component: duanduixq
+        }, {
+            path: '/hexiao',
+            name: 'hexiao',
+            component: hexiao
+        },
+        {
+            path: '/taoka168',
+            name: 'taoka168',
+            component: taoka168
+        },
+        {
+            path: '/act_hy_tk',
+            name: 'act_hy_tk',
+            component: act_hy_tk
+        },
+        {
+            path: '/fx_hy',
+            name: 'fx_hy',
+            component: fx_hy
+        },{
+            path: '/pay_success_er',
+            name: 'pay_success_er',
+            component: pay_success_er
+        },   {
+            path: '/dingdan',
+            name: 'dingdan',
+            component: dingdan
+        },
 
 
 

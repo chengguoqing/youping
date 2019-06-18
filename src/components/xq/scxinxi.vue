@@ -6,7 +6,7 @@
         <section class="ov pl10">
                 <p class="fz14 z3 tou_deert" @click="hf('')">{{$store.state.shopinfo.shop_name}} 
                     
-<!--             <renzheng></renzheng>-->
+             <renzheng></renzheng>
     
     </p>
             <section class="mui-row cen mt2">

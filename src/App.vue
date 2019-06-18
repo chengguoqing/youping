@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-      <img src="http://mall.cangniaowl.com/static_youpin/img/you_top.png" class="sd_jkh_dert">
+    
+      <img src="http://mall.cangniaowl.com/static_youpin/img/you_top.png" class="sd_jkh_dert" v-if="$store.state.shopinfo.shop_id!=2&&system_name!='ninehouse'">
 
     <section v-if="invalidRoute">
         {{$route}}
@@ -32,7 +33,7 @@
 
 -->
         </section>
-<!--<suspension></suspension>-->
+<!--<suspension></suspension>--> 
   </div>
 </template>
 
@@ -93,7 +94,9 @@
                 getwxsign.url = sd_us
                 th.post('home/getwxsign', getwxsign, function(data) {
                     th.wx_config(data)
-                    let sd_ert = `https://api.cangniaowl.com/shop/${datae.data.shop_id}.html?shareid=${datae.data.user_id}`
+                    var sd_sdf = api_url.split("/v1")[0]
+
+                    let sd_ert = `${sd_sdf}/shop/${datae.data.shop_id}.html?shareid=${datae.data.user_id}`
                     console.log(sd_ert);
                     th.fenxiang(datae.data.shop_name, sd_ert, datae.data.shop_logo, datae.data.company_intro)
                 })

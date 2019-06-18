@@ -26,7 +26,7 @@
 
 			<section class="qc_imgh mt5">
 				<span class="pr f_b">
-            <img :src="$store.state.shopinfo.wei_qr_code" class="qc_erwed">
+            <img :src="$store.state.shopinfo.wei_qr_code2" class="qc_erwed">
         <img :src="$store.state.shopinfo.shop_logo" class="logo_dertc">
     </span>
 

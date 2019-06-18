@@ -1,0 +1,56 @@
+ .dsf_jh_der_e{
+        height: 18rem;
+    }
+    .sdf_h_deert img {
+        vertical-align: bottom
+    }
+    .sdf_h_deert{
+        width: 50%;
+        background-color: #D1D3DF !important;
+        height: 50%;
+    } 
+    .sdf_h_deert:nth-child(2){
+         background-color: #F4E3DB !important
+    }
+    
+     .sdf_h_deert:nth-child(3){
+         background-color: #CDE1DB !important
+    }
+    
+     .sdf_h_deert:nth-child(4){
+         background-color: #AAD3D1 !important
+    }
+
+
+.dsf_jh_der_e.img_zu_a .sdf_h_deert:nth-child(3){
+    width: 100%;
+}
+
+.dsf_jh_der_e.img_zu_b .sdf_h_deert:nth-child(1){
+  height: 100%
+}
+
+
+.dsf_jh_der_e.img_zu_c .sdf_h_deert:nth-child(1){
+  width: 100%
+}
+
+
+      .dsf_jh_deer .chacheli{
+        background-color: #B2D2D1 !important
+    }
+      .dsf_jh_deer:nth-child(2) .chacheli{ 
+         background-color:#FAF7E6 !important
+    }
+     .dsf_jh_deer:nth-child(3) .chacheli{ 
+         background-color: #E8DEBB !important
+    }
+    .dsf_jh_deer:nth-child(4) .chacheli{ 
+         background-color: #D1D3DF !important
+    }
+
+
+   .dsf_jh_deer:nth-child(5) .chacheli{ 
+         background-color: #00CC99 !important
+    }
+

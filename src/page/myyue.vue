@@ -29,9 +29,11 @@
 
 		</ul>
 
+<!--
 		<p class="pd baocun_btn">
 			<a class="mui-btn bgls w100 fz16" @click="hf('chongzhi')">充值</a>
 		</p>
+-->
 
 	</div>
 </template>

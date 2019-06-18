@@ -1,6 +1,6 @@
 <!--订单-->
 <template>
-	<div >
+	<div > 
 
 		<sear_head @sear_text="search_fun" :placeholder="'搜索订单编号,商品名称'"></sear_head>
 
@@ -9,12 +9,12 @@
 				<span class="fz14">{{sw.name}}</span>
 			</p>
 
-		</section> 
- 
-		<section v-if="is_loadin">
- 
+		</section>
+
+		<section v-if="is_loadin"  >
+
             <section v-if="!kehu">
-                
+
 			<section class="sd_jhIs pr aa" v-if="orderlist_data.length>=1" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading">
 
 				<section class="dsf_h_row bgff " v-for="(se,idx) in orderlist_data">
@@ -29,7 +29,7 @@
                     </p>
 -->
 					</section>
- 
+
 					<ul>
 						<li class="pd pt10 pm10 btm mui-row pr" v-for="sd in se.goods_list" @click="hf('order_form_xq',{orderlist_data:se})">
 
@@ -64,26 +64,38 @@
 
 							</section>
 
-						</li>
+						</li> 
 					</ul>
 					<p class="tr fz12 btm pt5 pm5 pd z3">
 						共计{{se.goods_list.length}}件商品 合计：
-						<span class="red  fz16">￥ <span v-html="price_guo(se.order_amount)"> </span></span> (含运费 ￥{{se.shipping_fee}})
-					</p>
+						<span class="red  fz16" v-if="se.order_amount>0">
+                            ￥ <span v-html="price_guo(se.order_amount)"> </span>
+                        </span>
+                        	<span class="red   fz14" v-if="se.integral>0">
+                               + {{se.integral}}积分
+                            </span>
+
+                        (含运费 ￥{{se.shipping_fee}})
+				 	</p>
 					<section class="btm  tr df_jgh_wer pd">
+                      
+                           <a class="mui-btn"  @click="wei_qr_code2=se.QRcode;xian_s=true" v-if="se.QRcode"><i class="f_p saomao_iconse"></i> 提货二维码</a>
+                        
+                        
 						<span v-if="(dinghdn(se.status))=='待付款'">
                          <a class="mui-btn"  @click="order_formgx(se.order_id,'cancel',idx)">取消订单</a>
                     <a class="mui-btn ls_bor" @click="fukuang(se) ">付款</a>
                     </span>
-
+ 
 						<span v-if="(dinghdn(se.status))=='待发货'">
-
-                         <a class="mui-btn"   @click="hf('tuihuanhuo',{type:1,orderlist_data:se})" v-if="se.refundBtn!=0">申请退款</a>
+<!--v-if="se.is_pingou!=1"-->
+<!--                         <a class="mui-btn"   @click="hf('tuihuanhuo',{type:1,orderlist_data:se})" v-if="$store.state.shopinfo.shop_id!=1235">申请退款</a>-->
                          <a class="mui-btn"  @click="hf('order_form_xq',{orderlist_data:se})">查看订单</a>
                     </span>
 
 						<span v-if="(dinghdn(se.status))=='待收货'">
- <a class="mui-btn"   @click="hf('tuihuanhuo',{type:1,orderlist_data:se})"  v-if="se.refundBtn!=0">申请退款</a>
+<!--                             v-if="se.is_pingou!=1"-->
+<!-- <a class="mui-btn"   @click="hf('tuihuanhuo',{type:1,orderlist_data:se})"  v-if="$store.state.shopinfo.shop_id!=1235">申请退款</a>-->
                          <a class="mui-btn" @click="hf('wuliuxq',{orderlist_data:se.goods_list[0].goods_thumb,order_id:se.order_id,type:0})">查看物流</a>
                          <a class="mui-btn ls_bor" @click="order_formgx(se.order_id,'confirm',idx)">确认收货</a>
                     </span>
@@ -91,7 +103,7 @@
 						<span v-if="(dinghdn(se.status))=='待评价'">
 
                          <a class="mui-btn" @click="order_formgx(se.order_id,'delete',idx)">删除订单</a>
-                         <a class="mui-btn " @click="hf('tuihuanhuo',{type:0,orderlist_data:se})"  v-if="se.refundBtn!=0">申请换货</a>
+<!--                         <a class="mui-btn " @click="hf('tuihuanhuo',{type:0,orderlist_data:se})" v-if="se.is_pingou!=1&&$store.state.shopinfo.shop_id!=1235">申请退/换</a>-->
         <a class="mui-btn" @click="hf('wuliuxq',{orderlist_data:se.goods_list[0].goods_thumb,order_id:se.order_id,type:0})">查看物流</a>
                          <a class="mui-btn ls_bor" @click="hf('pingjia',{goods_list:se.goods_list,order_id:se.order_id})" v-if="se.is_comment<=0">评价</a>
 
@@ -111,6 +123,14 @@
                             <a class="mui-btn"  @click="hf('order_form_xq',{orderlist_data:se})">查看订单</a>
                     </span>
 
+
+
+                        		<span v-if="(dinghdn(se.status))=='待分享'">
+<!--                               <a class="mui-btn "  @click="hf('tuihuanhuo',{type:1,orderlist_data:se})"  v-if="$store.state.shopinfo.shop_id!=1235">申请退款</a>-->
+                    <a class="mui-btn ls_bor" @click="hf('spell_share',{order_id:se.order_id})">去分享</a>
+                    </span>
+
+
 					</section>
 
 				</section>
@@ -126,41 +146,42 @@
 
 
 
-			</section>
+			</section> 
 
 			<section class="sd_jhIs pr dsf_jg_detr mt40" v-else>
 
 				<kongbai :kb="kb"></kongbai>
 			</section>
-<!--
                     <advertising :position_id="4" class="mt40"></advertising>
                     <showcase :position_id="4" class="mt10"></showcase>
--->
-                
+
             </section>
 
             		<kongbai :kb="kb" v-else></kongbai>
 
 
-
+ 
 		</section>
 		<loadin v-else></loadin>
 
 		<dibu :kjh_s="3" v-if="!kehu"></dibu>
-    
+
+        
+        <erweima :wei_qr_code2="wei_qr_code2":xian_s='xian_s' @sd_jher="xian_s=''"></erweima>
+        
 	</div>
-</template> 
+</template>
 <script>
     import dibu from "../components/dibu.vue"
     import kongbai from "../components/kongbai.vue"
     import loadin from "../components/loadin.vue"
     import sear_head from "../components/sear_head.vue"
     import advertising from "../components/advertising.vue"
-     import showcase from "../components/showcase.vue"
-         import suspension from "../components/suspension.vue"
-    
+    import showcase from "../components/showcase.vue"
+    import suspension from "../components/suspension.vue"
+        import erweima from "../components/pup_erwm.vue"
     import {
-        MessageBox
+        MessageBox 
     } from 'mint-ui';
     import {
         Toast
@@ -168,6 +189,8 @@
     export default {
         data() {
             return {
+                wei_qr_code2:"",//二维码地址
+                    xian_s:false, //true显示二维码弹出层
                 shopinfo_p: "",
                 is_loadin: "",
                 num_sd: -1,
@@ -237,7 +260,8 @@
             sear_head: sear_head,
             advertising: advertising,
             showcase,
-            suspension
+            suspension,
+            erweima
         },
         methods: {
             queghua_s(idx, type) {
@@ -268,25 +292,33 @@
                 orderlist.current_page = this.current_page
                 orderlist.keyword = this.keyword
                 orderlist.type = this.type
-                if(this.$route.query.order_id){
-                   orderlist.order_id=this.$route.query.order_id
+                if (this.$route.query.order_id) {
+                    orderlist.order_id = this.$route.query.order_id
+                }
+                if (this.$route.query.order_type) {
+                    orderlist.order_type = this.$route.query.order_type
                 }
                 this.post("user/orderlist", orderlist, function(data) {
-                  
+
                     console.log('22');
-                    
-                     if(th.$route.query.order_id){
-                         
-                         th.hf('order_form_xq',{orderlist_data:data.data[0]})
-                         return
-                     }
-                      th.is_loadin = true
+
+                    if (th.$route.query.order_id) {
+
+                        th.hf('order_form_xq', {
+                            orderlist_data: data.data[0]
+                        })
+                        return
+                    }
+                    th.is_loadin = true
                     data.data.map(a => {
                         a.heji = 0
                         a.goods_list.map(b => {
                             a.heji += parseFloat(b.goods_price) * b.goods_number
                         })
                         a.heji += parseFloat(a.shipping_fee)
+                        if(a.QRcode){
+                         a.dx_type=1
+                        }
                         th.orderlist_data.push(a)
 
                         th.loading = false
@@ -334,8 +366,9 @@
                         return
                     }
                     dats_e.wxpay = data.wxpay
-                    let url_de=`https://api.cangniaowl.com/payment.html?token=${th.token}&order_id=${g_list.order_id}`
-                    window.location.href=url_de
+                    var sd_ddr=api_url.split("/v1")[0]
+                    let url_de = sd_ddr+`/payment.html?token=${th.token}&order_id=${g_list.order_id}`
+                    window.location.href = url_de
 
 
 
@@ -373,6 +406,11 @@
                     case 13:
                         return "待评价"
                         break;
+
+                    case 15:
+                        return "待分享"
+                        break;
+
                 }
             },
             order_formgx(order_id, type, idx) { //订单更新
@@ -423,16 +461,25 @@
             }
         },
         mounted() {
+
+
             try {
                 window.scrollTo(0, 0);
             } catch (e) {
 
             }
-            let th=this
-         
+            let th = this
 
-            
-             if (this.$route.query.type) {
+            if (this.$route.query.order_type == 2) {
+                let sd_ihe = {
+                    "name": "待分享",
+                    cls: "",
+                    type: "15"
+                }
+           this.ss_jh_w.splice(2,0,sd_ihe)
+            }
+
+            if (this.$route.query.type) {
                 this.queghua_s(this.$route.query.type, this.$route.query.types)
             } else {
                 this.getdata()
@@ -448,9 +495,9 @@
             this.carnumber(function(num) {
                 $(".jh_dfd_derrt").text(num)
             })
-            
-            
-            
+
+
+
 
         },
         filters: { //过滤器   页面上调用{{dt.state|lei}}
@@ -484,37 +531,39 @@
                     case 13:
                         return "待评价"
                         break;
+
+                    case 15:
+                        return "待分享"
+                        break;
+
                 }
             }
         },
         activated() {
-           
+
 
         }
     }
 
 </script>
 <style scoped>
-    .test{
+    .test {
         display: block
     }
+
     .df_jh_ertxc i {
         left: 20px;
     }
 
-    .dsf_jh_ertxc {
-        line-height: 40px;
-        top: 42px;
-    }
 
     .sd_jhIs {
         padding-top: 50px !important;
-      min-height: 28rem;
+        min-height: 28rem;
     }
 
     .sd_jhIs.aa {
         padding-top: 79px !important;
-          
+
     }
 
     .df_jgh_wer {
@@ -566,6 +615,12 @@
 
     .dsf_h_row {
         margin-top: 5px;
+    }
+    .saomao_iconse{
+        width: 16px;
+        height: 16px;
+        background-position: -182px -388px;
+        margin-right: 5px;
     }
 
 </style>

@@ -1,14 +1,18 @@
-<!--主页-->
+<!--新装修 主页-->
 <template>
-	<div class="index_sddrtxc">
-		<header class="mui-bar mui-bar-nav asd_uy_dftx">
-			<a class=" mui-pull-left z3 df_jh_ex">
-				<img src="http://mall.cangniaowl.com/static/img/headF.png" class="headF_icon cz">
-			</a>
+	<div >
+           <loadin v-if="is_sdf"></loadin>
+   
+         <jiuwu :body_sdf="body_sdf" v-if="body_sdf.is_top==2"></jiuwu>
+        
+        
+        
+        	<header class="mui-bar mui-bar-nav asd_uy_dftx" v-if="body_sdf.is_top==1">
+
 			<h1 class="mui-title z3 pl5 df_jh_ertxc" @click="hf('shousuo')">
             <i class="dx icon-sousuo"></i>
-            <input type="search" class="yj20 fz12" placeholder="品牌直购，源头服务，更多商品请搜索苍鸟">
-        </h1>   
+            <input type="search" class="yj20 fz12" placeholder="品牌直购，源头服务">
+        </h1>  
  
 <!--
 			<a class="mui-pull-right pt5" @click="hf('fenlei')">
@@ -18,25 +22,35 @@
 
         <information :sd_eer="sd_eer"></information>
 		</header>
+        
+        
 		<section v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-immediate-check="false" infinite-scroll-distance="1500">
-			<section > 
+			<section >
 
 				<div class="mui-content pm100">
+             
+                    		<section class="lunbo_s" v-if="body_sdf.is_top==1">
 
-					<section class="lunbo_s">
+						<mt-swipe :auto="4000"> 
+							<mt-swipe-item v-for="(bann,idx) in body_sdf.banner" :key="idx">
+								
+                                <div class="Sdf_jh_eert" :style="{'background-image': 'url('+bann.img+')'}"></div>
+							</mt-swipe-item>
 
-					     <lunbo_i :date_e="banner" ></lunbo_i>
+						</mt-swipe> 
+
 					</section>
-
-					<section class="tioui_sd pl10 mui-row">
+                    
+                    
+                    <section v-if="body_sdf.is_top==1">
+                    	<section class="tioui_sd pl10 mui-row" >
 						<section class="mui-col-xs-8">
 							<section class="df_jgh_drtx fl">
-                            
-								<img :src="shopinfo_p.shop_logo" @click="hf('dianpuxinxi')">
+								<img :src="$store.state.shopinfo.shop_logo">
 
 							</section>
-							<section class="ov">
-								<renzheng :shopinfo_p="shopinfo_p"></renzheng>
+							<section class="ov"> 
+<!--								<renzheng ></renzheng>-->
 
 							</section>
 
@@ -48,7 +62,7 @@
 									<p class="z3 fz16 ziti">
                                  
                                         <span >
-                              {{shopinfo_p.on_goods_count}}
+                              {{$store.state.shopinfo.on_goods_count}}
                                                 </span>
 
                         </p>
@@ -62,13 +76,13 @@
 							</section>
 						</section>
 						<p class="fz12 dian  dsf_jh_dertx">
-							{{shopinfo_p.shop_name}}
+							{{$store.state.shopinfo.shop_name}}
 <!--							<i class="dx icon-right fz12"></i>-->
 						</p>
 
 					</section>
 
-					<p class="qc"></p>
+                    	<p class="qc"></p>
 					<section class="btm mui-row bgff cen pt5  ds_jh_ser ">
 
 						<section class="mui-col-xs-3 pr" v-for="(jd,idx) in jgh_sd" :class="jd.cls" @click="sd_hsr(idx)">
@@ -80,49 +94,78 @@
 						</section>
 
 					</section>
-
+                    </section>
+                    
+                    
+                    
 					<section class="index_e_jd " :class="dianpou==0?'show':''">
-                      
+
 						<div id="sd_jh_drttx" class="show">
                     <div v-for="(sd,idx) in content" >
-                              
-            <div class="sd_jh_der_er" :class="sd.cls" v-if="sd.type==1" @click="sd_hgr(sd)">
+
+            <div class="sd_jh_der_er" :class="sd.cls" v-if="sd.type==1" >
                 <lunbo_r :date_e="sd" ></lunbo_r>
                 <span class="df_kjj_dert" @click="sd_hgs(idx)">
     <i class="dx icon-close1"></i>
     </span>
              </div>
-                              
-        <div class="sd_jh_der_er"  :class="sd.cls"   v-if="sd.type==2"  @click="sd_hgr(sd)">
-                <img_g :date_e="sd.date"></img_g> 
+
+        <div class="sd_jh_der_er"  :class="sd.cls"   v-if="sd.type==2"  >
+                <img_g :date_e="sd.date"></img_g>
                      <span class="df_kjj_dert" @click="sd_hgs(idx)">
     <i class="dx icon-close1"></i>
     </span>
-            
+ 
         </div>
-     <div class="sd_jh_der_er"   :class="sd.cls"  v-if="sd.type==3"  @click="sd_hgr(sd)">
-                <commodity :date_e="sd.date"></commodity>  
+     <div class="sd_jh_der_er"   :class="sd.cls"  v-if="sd.type==3"  >
+                <commodity :date_e="sd.date"></commodity>
                   <span class="df_kjj_dert" @click="sd_hgs(idx)">
     <i class="dx icon-close1"></i>
-    </span> 
-         
+    </span>
+
     </div>
 
-      <div class="sd_jh_der_er"  :class="sd.cls"   v-if="sd.type==4"  @click="sd_hgr(sd)">
-                <commodity_zu  :date_e="sd.date"></commodity_zu>  
-          
+      <div class="sd_jh_der_er"  :class="sd.cls"   v-if="sd.type==4"  >
+                <commodity_zu  :date_e="sd.date"></commodity_zu>
+
                    <span class="df_kjj_dert" @click="sd_hgs(idx)">
                        <i class="dx icon-close1"></i>
                     </span>
-          
+
     </div>
 
-                              
+ 
+
+
+
+     <div class="sd_jh_der_er"  :class="sd.cls"   v-if="sd.type==5"  >
+
+                <img_g_zu :date_e="sd"></img_g_zu>
+                                   <div class="df_kjj_dert">
+                    <p @click="sd_jhhg_df(idx,1)" class="cf pt5" v-if="idx>0"> <i class="dx icon-up"  ></i></p>
+                        <p @click="sd_jhhg_df(idx,2)" class="cf pt5" v-if="idx!=(content.length-1)"> <i class="dx icon-down"  ></i></p>
+    <p @click="sd_hgs(idx)" class="cf pt5"> <i class="dx icon-close1"  ></i></p>
+    </div>
+
+        </div>
+                        
+                        
+                        
+                   <div class="sd_jh_der_er"  :class="sd.cls"   v-if="sd.type==6" >
+                                 <shiping :date_e="sd.date"></shiping>
+                                 
+                                 
+                                 
+    </div>
+                        
+                        
+
+
             </div>
-                            
-                            
-                            
-    
+
+
+
+
     </div>
 
 <!--
@@ -137,25 +180,34 @@
 					</section>
 
 					<p class="qc"></p>
-                    
+
                     <section v-if="sd_jhh_eert">
 
-<!--
 					<advertising :position_id="1" class="mt10"></advertising>
-                    
+
                     <showcase  :position_id="1"></showcase>
--->
                     </section>
-                    
-                    
-                    
+
+
+
+				
+<!--
+                    <section  v-if="$store.state.shopinfo.shop_id!=2">
 					<p class="cen mt20">
-						<img src="http://mall.cangniaowl.com/static/img/copy_bottom_bg.png" class="copy_bottom_bg">
+						<img src="http://mall.cangniaowl.com/static_youpin/img/dibu_e.png" class="copy_bottom_bg">
 					</p>
 
 					<p class="z6 cen fz12">
-						苍鸟公众号自媒体电商<br> Copyright2017 All Rights Reserved
+					 Copyright2018 All Rights Reserved
 					</p>
+                    <p class="fz12 z9 cen">
+                        本商城由苍鸟网络提供技术支持
+                    </p>
+                        </section>
+-->
+                    <section class="cen mt30">
+                        <img src="https://mall.cangniaowl.com/static/img/cangniao_bq.png" style="width:145px"> 
+                </section>
 				</div>
 				<erweima :xian_s='xian_s' @sd_jher="xian_s=''"></erweima>
 
@@ -163,8 +215,8 @@
 <!--	<loadin v-if="is_sdf"></loadin>-->
 
 		</section>
-		<dibu :kjh_s="0"></dibu>
-
+<!--		<dibu :kjh_s="0" v-if="is_top==0"></dibu>-->
+    <dibu :kjh_s="0"></dibu>
 	</div>
 </template>
 <script>
@@ -178,28 +230,27 @@
     import cplist_l from "../components/cplist_l.vue"
     import showcase from "../components/showcase.vue"
     import information from "../components/information.vue"
-
     import lunbo_i from '../components/lunbo_i'
     import img_g from '../components/img_g'
+    import img_g_zu from '../components/img_g_zu'
     import commodity from '../components/commodity'
     import commodity_zu from '../components/commodity_zu'
-        import lunbo_r from '../components/lunbo_r'
-    
-    
+    import lunbo_r from '../components/lunbo_r'
+    import shiping from '@/components/shiping'
+    import jiuwu from "@/jiuwu/index"
     var sd_hgh_e = ""
     export default {
         data() {
             return {
+                is_top: 1,
                 is_loadin: "",
                 xian_s: "", //true显示二维码弹出层
                 body_sdf: "",
                 shopinfo_p: "",
                 dianpou: 0,
                 content: "",
-
                 banner: "",
-                        
-                is_sdf:true,
+                is_sdf: true,
                 dingbu: "", //为1就不显示头部切换
                 f_type: 0, //分类的type
                 loading: false, //判断是否滚到倒底部
@@ -247,7 +298,10 @@
             img_g,
             commodity,
             commodity_zu,
-            lunbo_r
+            lunbo_r,
+            img_g_zu,
+            shiping,
+            jiuwu
         },
         methods: {
             sd_hsr(idx) {
@@ -310,42 +364,47 @@
             sd_einsd() {
 
             },
+            sd_hgr(sd) {
+                console.log(sd);
+            }
 
         },
         mounted() {
             let index_h = {},
                 th = this
             index_h.token = this.token
+       
+            this.post("home/index", {
+                token: this.token,
+                template_id: template_id
+            }, function(data) {
+               th.is_sdf = false
+                th.content = data.decorate_content
+                th.banner = data.decorate_banner
+                th.body_sdf=data
+                console.log(    th.body_sdf);
+                th.is_top = data.is_top
+                if (data.is_first != 1) { // 1为默认首页
+                    th.Title(data.decorate_name, 1)
+                } else {
+                    setTimeout(function() {
+                        th.Title(th.$store.state.shopinfo.shop_name, 1)
+                    }, 50);
 
-            this.shop_info(function(data) {
-                th.shopinfo_p = data.data
-                th.sd_eer = data.data
-                th.Title(th.shopinfo_p.shop_name, 1)
-                th.is_sdf=false
-                let l_get = {}
-                l_get.shop_id = data.data.shop_id
-                l_get.id=2
-                th.post("decorate/get",l_get,function(date_e){
-                    th.content= JSON.parse(date_e.decorate_content)
-                    th.banner= JSON.parse(date_e.decorate_banner)
-                })
-            }) 
-
-
-
+                }
+            })
 
         },
         created: function() {
             sd_hgh_e = this
+  
         },
-        activated() {
-
-
-
-
-
-
-
+        activated() { 
+                  
+             this.Title(this.$store.state.shopinfo.shop_name, 1)
+            if (this.$store.state.shopinfo.shop_id == 1235) {
+                this.hf('user')
+            }
 
         },
         beforeRouteLeave(to, from, next) {
@@ -362,6 +421,7 @@
 
     window.jump_term = function(url) {
         sd_hgh_e.hf(url)
+        alert(sd_hgh_e)
     }
 
 </script>
@@ -372,14 +432,19 @@
         display: none
     }
 
+    .sfsdf_sddf {
+        display: none
+    }
+
+    .sfsdf_sddf.act {
+        display: block
+    }
+
 </style>
 <style scoped>
     .asd_uy_dftx {
         position: relative
     }
-
-
-
     .df_jgh_drtx img {
         z-index: 100;
         flex: 0 0 60px;
@@ -459,5 +524,15 @@
     #sd_jh_drttx {
         display: none
     }
+      .Sdf_jh_eert {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 50%;
+
+
+    }
+
 
 </style>

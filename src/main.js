@@ -17,44 +17,12 @@ import $ from 'jquery'
 import VueClipboard from 'vue-clipboard2'
 import Navigation from 'vue-navigation'
 import store from './store'
-import 'vant/lib/vant-css/index.css';
+import 'vant/lib/index.css';
 import Vuex from 'vuex'
-import { Tab, Tabs } from 'vant';
-import { Swipe, SwipeItem } from 'vant';
-import { Row, Col } from 'vant';
-import { Waterfall } from 'vant';
-import {
-  GoodsAction,
-  GoodsActionBigBtn,
-  GoodsActionMiniBtn
-} from 'vant';
 
+import Vant from 'vant';
 
-import { Popup } from 'vant';
-import { Button } from 'vant';
-
-import { PullRefresh } from 'vant';
-import { Actionsheet } from 'vant';
-
-Vue.use(Actionsheet);
-
-
-Vue.use(PullRefresh);
-
-Vue.use(Button);
-Vue.use(Popup);
-
-
-Vue
-  .use(GoodsAction)
-  .use(GoodsActionBigBtn)
-  .use(GoodsActionMiniBtn);
-Vue.use(Waterfall);
-Vue.use(Row).use(Col);
-
-Vue.use(Swipe).use(SwipeItem);
-Vue.use(Tab).use(Tabs);
-
+Vue.use(Vant);
 
 Vue.use(VueClipboard)
 

@@ -402,6 +402,9 @@ body {
 .copy_bottom_bg {
     width: 84px;
 }
+.copy_bottom_bg.ab{
+    width: 44px;
+}
 
 .dsf_jgh_ert {
     height: 9.5rem;
@@ -1713,4 +1716,60 @@ button.mint-msgbox-btn.mint-msgbox-confirm{
         height: 30px;
         margin-bottom: 5px;
     }
+}
+
+
+.user_icon {
+    width: 4rem;
+    height: 4rem;
+    margin-top: -10px;
+    min-width: 60px;
+    min-height: 60px;
+}
+.fd_jh_drt {
+    color: #E9AC74;
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+    margin-left: -12px;
+    position: relative;
+    top: -5px;
+    text-shadow: 1px 1px 1px #000;
+}
+
+
+.fg_jhert {
+    text-shadow: 1px 1px 1px #000
+}
+
+.huiyuandengji {
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    top: 45%;
+    z-index: 100
+}
+
+.huiyuandengji i {
+    width: 67px;
+    height: 17px;
+    background-position: -24px -335px;
+
+}
+
+.huiyuandengji span {
+    background: #fff;
+    color: #333;
+    font-size: 12px;
+    display: inline-block;
+    line-height: 1.5;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9)
+}
+
+.cn_dibu {
+    width: 137px;
 }

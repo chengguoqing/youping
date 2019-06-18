@@ -36,7 +36,7 @@
 				<section class="mui-col-xs-6 sdf_jh_d_dsr ">
 					<p class="cf fz12 ">已提银盛钱包收入</p>
 					<p class="cf fz15">
-						{{mywallet_data.count_commissions||'0'|baoliu }}
+						{{mywallet_data.used_money||'0'|baoliu }}
 					</p>
 				</section>
 

@@ -7,7 +7,40 @@
             配送至
         </p>
     
-        <section class="behg_deer">
+        <section class="behg_deer btm">
+            
+            <section v-if="d_info.express_type==2">
+             <section class="pt10">
+                 <span class="kuai_ddrt">到店自提</span>
+            <p class="pl10 btm z3 pt5 pm5 mt10">
+    
+自提地址（商家地址）
+    </p>
+                
+            </section>
+            
+              <ul>
+                <li class="pd btm pt10 pm10 pr40 pr " :class="ssd_sd"  @click="sd_Drt_er(d_info.pickup_address)">
+                    <i class="f_p map_iconse"></i>
+                    <span class="fz14">
+                        {{d_info.pickup_address}}
+                    </span>
+                    <i class="red dx icon-gou df_deert"></i>
+                </li>
+            </ul>
+            
+            
+            </section>
+            
+            
+            
+            <section class="pt10"  v-if="d_info.express_type==2">
+                 <span class="kuai_ddrt">快递</span>
+            <p class="pl10 btm z3 pt5 pm5 mt10">
+    收货地址
+    </p>
+                
+            </section>
             <ul>
                 <li class="pd btm pt10 pm10 pr40 pr " v-for="sd in address" :class="sd.cls" @click="sd_Drt(sd)">
                     <i class="f_p map_iconse"></i>
@@ -26,11 +59,12 @@
 <script>
     export default {
         props: {
-            address: ""
+            address: "",
+            d_info: ""
         },
         data() {
             return {
-                
+                ssd_sd:""
             }
         },
         components: {
@@ -42,17 +76,30 @@
                     a.cls = ""
                 })
                 sd.cls = "act"
-                
-                this.$store.state.is_dizs=false
-                let ad_lisd=sd.province_name+""+sd.city_name+""+sd.district_name+''+sd.address,
-                    sd_dert={}
-                sd_dert.name=ad_lisd
-                sd_dert.id=sd.address_id
-                this.$emit('cs_eer',sd_dert)
+                this.ssd_sd=""
+                this.$store.state.is_dizs = false
+                let ad_lisd = sd.province_name + "" + sd.city_name + "" + sd.district_name + '' + sd.address,
+                    sd_dert = {}
+                sd_dert.name = ad_lisd
+                sd_dert.id = sd.address_id
+                 this.$store.state.pick_up=0
+                this.$emit('cs_eer', sd_dert)
+            },
+            sd_Drt_er(sd) {
+                this.address.map(a => {
+                    a.cls = ""
+                })
+                this.ssd_sd="act"
+                  this.$store.state.pick_up=1
+                this.$store.state.is_dizs = false
+                let ad_lisd = sd,
+                    sd_dert = {}
+                sd_dert.name = ad_lisd
+                this.$emit('cs_eer', sd_dert)
             }
         },
         created() {
-        
+
         },
     }
 
@@ -92,6 +139,15 @@
 
     .behg_deer li.act .df_deert {
         display: block;
+    }
+
+    .kuai_ddrt {
+        font-size: 12px;
+        background: #F95151;
+        color: #fff;
+        padding: 2px 15px;
+        border-radius: 10px;
+        margin-left: 10px;
     }
 
 </style>

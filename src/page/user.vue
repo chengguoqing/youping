@@ -5,7 +5,10 @@
                 <i class="f_p shezhi_d" @click="hf('gerenshezi')"></i>
             </section>
             <section class="pd">
-                    <section class="yj4 bgff jh_jh_drt cen">
+                    <section class="yj4 bgff jh_jh_drt cen pr">
+                           <i class="dx icon-erweima gf_jhh_eert" @click="ershow=true"></i>
+                        
+                        
                             <img :src="user_info.header_image" class="user_icon_e yj"> 
                         <section class="sd_jh_deertrt">
                         <p class="fz12 z3 b">{{user_info.user_name||'&nbsp;'}}</p>
@@ -24,6 +27,13 @@
                                 
                                 <p class="z6 fz12 yty_derrtt">银盛钱包</p>
                             </section>
+                               <section class="box_a red fz16" @click="kj_jhd_er('myyue?user_money='+user_info.user_money)">
+                             <span v-if="!user_info.user_money">0</span>
+                           <span v-else> {{user_info.user_money|baoliu}}</span>
+                                <p class="z6 fz12 yty_derrtt">余额</p>
+                            </section>
+                            
+                            
                              <section class="box_a red fz16" @click="kj_jhd_er('myqianbao')">
                              <span v-if="!user_info.total_commissions">0</span>
                            <span v-else> {{user_info.total_commissions|baoliu}}</span>
@@ -44,6 +54,11 @@
             </section>
     </section>
 
+    
+    
+    		
+    
+    
     <section class="pd mt30">
     
     
@@ -75,7 +90,40 @@
         
         
         
-            	<section class=" bgff mt10 yj4">
+        <section class=" bgff mt10" v-if="user_info.shopkeeper_id==1" >
+				<p class="df_toyute_s pd">
+					<i class="f_p sdf_jhhj_dert"></i>
+					<span class="fz14 z3">我的销售</span>
+				</p>
+                    
+                    		<section class="mui-row btm  pd">
+					<section class="mui-col-xs-6 pt10 pm10 brm" @click="hf('dingdan')">
+						<i class="dx icon-right fz12 rihg_erertx mr10 z9"></i>
+						<i class="f_cnp df_jhg_rer fl ca"></i>
+						<section class="ov pl10 sdf_jh_drt">
+							<p class="fz12 pt10">订单信息</p>
+						</section>
+					</section>
+
+                    	<section class="mui-col-xs-6 pt10 pm10 pl10 pr z9" @click="saoma_s">
+
+						<i class="dx icon-right fz12 rihg_erertx "></i>
+						<i class="f_cnp df_jhg_rer fl cb"></i>
+						<section class="ov pl10 sdf_jh_drt">
+							<p class="fz12 pt10">扫码核单</p>
+
+						</section>
+					</section>
+
+				</section>
+                    
+                    
+                    
+    </section>
+        
+        
+        
+            	<section class=" bgff mt10 yj4" v-if='system_name!="ninehouse"'>
 				<p class="df_toyute_s pd">
 					<i class="f_p wodij_der "></i>
 					<span class="fz12 z3">我的服务</span>
@@ -83,14 +131,14 @@
 					
 				</p>
     <section class="btm bgff pt10 s_jh_omd mui-row cen">
-              <section class="mui-col-xs-3"  v-if="user_info.share_user_commission>0" @click="hf('fenxiangzhezx',{type:1})">
+              <section class="mui-col-xs-4"  v-if="user_info.share_user_commission>0" @click="hf('fenxiangzhezx',{type:1})">
                     <p class="sd_derrt">
                         <i class="f_p erdf_jh_drt "></i>
                     </p>
                   <p class="yty_derrtt fz12">分享者中心</p>
     
                 </section> 
-         <section class="mui-col-xs-3"  v-else @click="tishi('分享者')">
+         <section class="mui-col-xs-4"  v-else @click="tishi('分享者')">
                     <p class="sd_derrt">
                         <i class="f_p erdf_jh_drt act"></i>
                     </p>
@@ -98,14 +146,14 @@
     
                 </section> 
         
-         <section class="mui-col-xs-3"  v-if="user_info.agent_user_commission>0" @click="hf('fenxiangzhezx',{type:2})" >
+         <section class="mui-col-xs-4"  v-if="user_info.agent_user_commission>0" @click="hf('fenxiangzhezx',{type:2})" >
                     <p class="sd_derrt">
                         <i class="f_p erdf_jh_drt ab "></i>
                     </p>
                   <p class="yty_derrtt fz12">服务商中心</p>
     
                 </section> 
-             <section class="mui-col-xs-3"  v-else @click="tishi('服务商')">
+             <section class="mui-col-xs-4"  v-else @click="tishi('服务商')">
                     <p class="sd_derrt">
                         <i class="f_p erdf_jh_drt ab act"></i>
                     </p>
@@ -113,18 +161,19 @@
     
                 </section> 
         
+<!--
          <section class="mui-col-xs-3" @click="is_lekj=true">
         
-<!--             <a :href="'tel:'+$store.state.shopinfo.company_tel">-->
                     <p class="sd_derrt">
                         <i class="f_p erdf_jh_drt ac"></i>
-                    </p> 
+               
                   <p class="yty_derrtt fz12">客服 </p>
-<!--    </a>-->
+
                 </section>  
+-->
 
  
-                 <section class="mui-col-xs-3" @click="hf('jiameng')"  v-if="user_info.shopkeeper_id>0">
+                 <section class="mui-col-xs-4" @click="hf('jiameng')"  v-if="user_info.shopkeeper_id>0">
                     <p class="sd_derrt">
                         <i class="f_p erdf_jh_drt ad act"></i>
                     </p> 
@@ -133,7 +182,7 @@
                 </section> 
         
         
-          <section class="mui-col-xs-3"  v-else @click="tishi('加盟商')">
+          <section class="mui-col-xs-4"  v-else @click="tishi('加盟商')">
                     <p class="sd_derrt">
                         <i class="f_p erdf_jh_drt ad "></i>
                     </p> 
@@ -148,9 +197,11 @@
                     
     </section>
         
-        
+            <section class="mt10">
+      <huiyuanka :taoka="user_info.taoka"></huiyuanka>
+    </section>
         	<section class=" bgff mt10 yj4">
-				<p class="df_toyute_s pd cen">
+				<p class="df_toyute_s pd ">
 					<i class="f_p wodij_der ac"></i>
 					<span class="fz12 z3">我的分享</span>
 
@@ -206,13 +257,72 @@
     </section>
    <dibu :kjh_s="4"></dibu>
     <kefu v-if="is_lekj" @cliser="is_lekj=false"></kefu>
+    
+    
+    
+    
+<!--
+         <van-dialog
+      v-model="ershow"
+       :showConfirmButton="false"
+    >
+-->
+    
+    <section class="sd_drertxrt" v-if="ershow">
+        <section class="sd_Df_drtxc pr">
+            <p class="cf dsf_jh_derter">
+                到店核销码
+            </p>
+               
+            <section class="pd">
+                <section class="wrwe_ma">
+                    <img :src="user_info.tihuoma" class="w100 h100">
+                </section>
+                <p class="z3 fz12 cen mt5">
+                    请将本码出示给门店店员
+                </p>
+                <p class="z9 fz12 cen sdf_jh_eet">
+                    本核销码用于到店自提商品、到店领取各类奖品、<br>
+享受各种套餐中线下服务时的身份认证
+                    </p>
+                <section class="mt20">
+            <p class="fz12 z3">使用方式：</p>
+                    <p class="fz12 z6">
+        1. 将本码出示给门店工作人员；<br>
+2. 工作人员扫码后会直接获得您的到店自提订单列表、可领取的奖品列表或待使用的店内服务；<br>
+3. 工作人员核销订单/奖品并将商品同时交付给您，或核销掉一次服务内容
+        </p>
+        </section>
+               </section> 
+                
+         
+    
+          
+            <section class="dsfrttxert">
+                <button class="mn_sdd_Dert" @click="hf('hexiao',{pickup_code:user_info.openid,type:2})">我的待核销项目</button>
+            </section>  
+            
+                 <i class="dx icon-close close_dert" @click="ershow=false"></i>
+               </section>   
+        
+    
+               </section>
+         
+<!--                <i class="dx icon-close close_dert" @click="ershow=false"></i>-->
+          
+      
+<!--    </van-dialog>-->
+    
+    
 </div>
 </template>
 <script>
+    var wx = require('weixin-js-sdk');
     import erweima from "../components/erweima"
     import dibu from "../components/dibu.vue"
     import fenxiangpup from "../components/fenxiangpup"
     import kefu from "../components/meiye/kefu"
+    import huiyuanka from "../components/user/huiyuanka"
     import {
         MessageBox
     } from 'mint-ui';
@@ -222,6 +332,7 @@
     export default {
         data() {
             return {
+                ershow: false,
                 jindu: 0,
                 ycsd_d: false,
                 fn_url: "",
@@ -232,7 +343,7 @@
                 is_sdfer: false,
                 sd_errt_er: "",
                 is_huodong: true,
-                is_lekj:false,
+                is_lekj: false,
                 mydingd: [{
                         id: 1,
                         type: 6,
@@ -274,12 +385,65 @@
             erweima,
             fenxiangpup,
             dibu,
-            kefu
+            kefu,
+            huiyuanka
         },
         methods: {
+            saoma_s() {
+                let th = this
+                wx.scanQRCode({
+                    needResult: 1,
+                    success: function(res) {
+                        var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+                        let pickupcodecheck = {}
+                        pickupcodecheck.token = th.token
+                        pickupcodecheck.pickup_code = result
+                        th.post("user/saoma", pickupcodecheck, function(data) {
+
+                            if (data.type == 1) {
+                                th.post('user/pickupcodecheck', pickupcodecheck, function(data) {
+                                    let is_verification = data.is_verification,
+                                        order_id = data.order_id,
+                                        orderlist = {}
+                                    orderlist.token = th.token
+                                    orderlist.order_id = order_id
+                                    orderlist.pick_status = 1
+                                    orderlist.current_page = 1
+                                    th.post("user/orderlist", orderlist, function(daty) {
+                                        let sd_df = daty.data[0] || {}
+                                        if (!daty.data[0]) {
+                                            th.$notify('无权限核单！');
+                                            return
+                                        }
+                                        sd_df.dx_type = 1
+                                        sd_df.pick_status = 3
+                                        sd_df.result = result
+                                        sd_df.is_verification = is_verification
+                                        sd_df.pickup_code = result
+                                        th.hf('order_form_xq', {
+                                            orderlist_data: sd_df
+                                        })
+                                    })
+                                })
+                            }
+                            if (data.type == 2) { //新的到店领取，到店服务
+                                th.hf('hexiao', {
+                                    pickup_code: result
+                                })
+
+
+                            }
+                        })
+
+
+
+                    }
+                });
+            },
+
             tishi(text) {
                 Toast({
-                    message: "本页仅"+text+"您尚不是"+text,
+                    message: "本页仅" + text + "您尚不是" + text,
                     position: 'bottom',
                     duration: 5000
                 });
@@ -300,13 +464,16 @@
                 this.hf(this.sd_errt_er)
             },
             sc_tu_rf(id_d) {
-
+                if (system_name == "ninehouse") {
+                    this.ycsd_d = true
+                    return
+                }
 
                 if (this.$store.state.shopinfo.user_group_id > 0) {
                     this.ycsd_d = true
                 } else {
-
-                    MessageBox(' ', '推广名片仅限会员可以生成，您目前尚不是会员，无法生成推广名片');
+                    MessageBox(' ', '不符合生成推广名片仅限会员，请联系管理员');
+                    //                    MessageBox(' ', '推广名片仅限会员可以生成，您目前尚不是会员，无法生成推广名片');
                 }
             }
         },
@@ -717,6 +884,107 @@
 
     .wodij_der.ac {
         background-position: -209px -221px
+    }
+
+
+    .gf_jhh_eert {
+        position: absolute;
+        right: 10px;
+        top: 16px;
+        font-size: 30px;
+        background: #fff;
+        padding: 8px 2px 4px 2px;
+        border-radius: 4px;
+        z-index: 999
+    }
+
+
+
+
+
+
+    .dsf_jh_derter {
+        background: #478AFF;
+        font-size: 20px;
+        height: 100px;
+        text-align: center;
+        padding-top: 30px;
+        border-bottom-right-radius: 200px 15px;
+        border-bottom-left-radius: 200px 15px;
+    }
+
+    .wrwe_ma {
+        width: 120px;
+        height: 120px;
+        border: 1px solid #F2DCB8;
+        margin: auto;
+        padding: 5px;
+        margin-top: -35px;
+
+    }
+
+    .sdf_jh_eet {
+        line-height: 1.5
+    }
+
+    .dsfrttxert {
+        padding: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+
+    .mn_sdd_Dert {
+        width: 100%;
+        color: #694206;
+        font-size: 14px;
+        height: 40px;
+        background: linear-gradient(to bottom, #F2DCB6, #EECC95);
+        border: 0px;
+    }
+
+    .close_dert {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        font-size: 22px;
+        color: #fff;
+    }
+
+    .sd_drertxrt {
+        position: fixed;
+        left: 0px;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .sd_Df_drtxc {
+        background: #fff;
+        width: 300px;
+        margin: auto;
+        margin-top: 20%
+    }
+
+
+
+    .df_jhg_rer.ca {
+        background-position: -58px -369px
+    }
+
+    .df_jhg_rer.cb {
+        background-position: -120px -369px
+    }
+
+    .gf_jhh_eert {
+        position: absolute;
+        right: 10px;
+        font-size: 30px;
+        background: #fff;
+        padding: 8px 2px 4px 2px;
+        border-radius: 4px;
+        z-index: 999
     }
 
 </style>

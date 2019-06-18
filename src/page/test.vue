@@ -1,6 +1,6 @@
 <template>
     <div >
-
+dfdsf
     </div>
         </template>
 <script>
@@ -17,7 +17,7 @@
 
         },
         mounted() {
-            
+            this.ge_t("xxx",{data:[{id:0,name:"cangniao"}]})
         },
     }
 

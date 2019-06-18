@@ -6,13 +6,14 @@ import {
 } from 'mint-ui';
 var sd_iux = "https://api.cangniaowl.com/v1/",
     shopinfo = false
-
+sd_iux = api_url
 //sd_iux='http://192.168.0.70//index.php/v1/'
 export default {
     install(Vue, options) {
         let name = "token"
         Vue.prototype.token = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.href) || [, ""])[1].replace(/\+/g, '%20')) || null;
         Vue.prototype.token = token
+        Vue.prototype.api_url = api_url
         Vue.prototype.ge_t = function (url, cn, xy) {
             this.$http.get(sd_iux + url, {
                 params: cn
@@ -22,11 +23,29 @@ export default {
                 //                alert("请求失败");
             });
         }
+        
+        Vue.prototype.system_name=system_name 
+        
         Vue.filter("baoliu", function (t) {
             return parseFloat(t).toFixed(2)
         })
 
-      
+
+        Vue.prototype.post_new = function (url, cn, xy) {
+            cn.token = token
+            return new Promise((resolve, reject) => {
+                this.$http.post(api_url + url, cn, {
+                    emulateJSON: true //跨域
+                }).then((response) => {
+                    if (response.data.err_code == 400) {
+                        MessageBox('提示', response.data.return_msg);
+                        return
+                    }
+
+                    resolve(response.data.data)
+                })
+            })
+        }
         Vue.filter("shixiao", function (t) {
             switch (t) {
                 case 1:
@@ -207,18 +226,11 @@ export default {
             if (cn.type_e == 1) {
                 sd_iux = "https://file.cangniaowl.com/v1/"
             }
-
-
-
             this.$http.post(sd_iux + url, cn, {
                 emulateJSON: true //跨域
             }).then((response) => {
 
                 if (response.data.err_code == "000001") { //跳转首页
-                    //                    router.push({
-                    //                        path: "/"
-                    //                    })
-                    //                    window.location.href = window.location.href.split("#")[0]
                     return
                 }
                 if (response.data.err_code == "000002") { //限购 

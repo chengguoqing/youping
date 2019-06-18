@@ -14,10 +14,20 @@
 					</p>
 					<p class="dian pd pt5 pm5 fz12 ">
 						{{ldat.goods_name}}
+                        
 					</p>
-					<p class="btm pd pt5 pm5 fz12 ">
-						<span class="red fz14 zonhgxiaose ab">￥<span v-html="price_guo(ldat.shop_price)"></span> </span>
-						<span class="ls fr zonhgxiaose">总销量{{ldat.sales_goods_number||0}}</span>
+					<p class="btm pd pt5 pm5 fz12 dsf_derty">
+						<span class="red fz14 zonhgxiaose ab">
+                           <span v-if="ldat.shop_price>0"> ￥ <span v-html="price_guo(ldat.shop_price)"></span></span>
+                             <span class="fz12" v-if="ldat.integral>0">
+                                 
+                                 <span v-if="ldat.shop_price>0">+</span>
+                                 {{ldat.integral}}积分</span>
+                        </span>
+<!--						<span class="ls fr zonhgxiaose">总销量{{ldat.sales_goods_number||0}}</span>-->
+                        
+                        
+                      
 					</p>
 				</section>
 			</section>
@@ -148,6 +158,9 @@
 
     .zonhgxiaose.ab {
         top: 2px;
+    }
+    .dsf_derty li{
+     
     }
 
 </style>
