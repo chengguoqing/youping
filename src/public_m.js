@@ -329,7 +329,12 @@ export default {
 
         Vue.prototype.kefu = function (shop_id, goods_id) {
 
-            window.location.href = `http://shop${shop_id}.cangniaowl.com/websocket/index?token=${token}&goods_id=${goods_id||0}`
+            var fg_drt= `http://shop${shop_id}.cangniaowl.com/websocket/index?token=${token}&goods_id=${goods_id||0}`
+            if(system_name=='ninehouse'){
+                fg_drt=`http://api.yinggaigou.com/shop/${shop_id}.html?jump_c=websocket&goods_id=${goods_id||0} `
+            }
+        
+            window.location.href =fg_drt
 
 
         }

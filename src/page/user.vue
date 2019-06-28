@@ -70,8 +70,9 @@
 					<span class="fz12 fr" @click="hf('order_form')">所有订单<i class="dx icon-right fz12 z9"></i></span>
 				</p>
 
-				<section class="btm bgff pt10 s_jh_omd mui-row cen">
-					<section class="sd_ds_srtx" v-for="(md,idx) in mydingd" @click="hjg_sdr(idx,md.id,md.type)">
+				<section class="btm bgff pt10 s_jh_omd mui-row cen box fdgfg_errte" :class="system_name=='ninehouse'?'act':''">
+                 
+					<section class="box_a" v-for="(md,idx) in mydingd" @click="hjg_sdr(idx,md.id,md.type)" >
 
 						<p class="s_kjh_der">
 							<span class="pr">
@@ -468,13 +469,13 @@
                     this.ycsd_d = true
                     return
                 }
-
-                if (this.$store.state.shopinfo.user_group_id > 0) {
-                    this.ycsd_d = true
-                } else {
-                    MessageBox(' ', '不符合生成推广名片仅限会员，请联系管理员');
-                    //                    MessageBox(' ', '推广名片仅限会员可以生成，您目前尚不是会员，无法生成推广名片');
-                }
+ this.ycsd_d = true
+//                if (this.$store.state.shopinfo.user_group_id > 0) {
+//                    this.ycsd_d = true
+//                } else {
+//                    MessageBox(' ', '不符合生成推广名片仅限会员，请联系管理员');
+//                    //                    MessageBox(' ', '推广名片仅限会员可以生成，您目前尚不是会员，无法生成推广名片');
+//                }
             }
         },
         mounted() {
@@ -985,6 +986,10 @@
         padding: 8px 2px 4px 2px;
         border-radius: 4px;
         z-index: 999
+    }
+    
+    .fdgfg_errte.act .box_a:last-child{
+        display: none
     }
 
 </style>

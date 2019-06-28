@@ -41,7 +41,7 @@
                         <div class="sd_jj_dsd pr f_b">
                             <img src="https://mall.cangniaowl.com/static/img/taoka/tou_bud.png">
                             <p class="dsf_kj_dert">
-                                <span>套卡福利</span>
+                                <span>礼包福利</span>
                             </p>
                         </div>
                     </section>
@@ -50,7 +50,7 @@
                     <ul>
                         <li v-for="(sd,idx) in regular.gift_bag_intro" class="mt10">
                             <p class="fz16 z3 cen">
-                                套卡福利{{idx+1}} 
+                                礼包福利{{idx+1}} 
                             </p>
                             <section class="bh_lis_e pd pt10 pm10 mt10 pr ov">
                                 <span class="bainyan_ser"></span>
@@ -141,7 +141,7 @@
             var img = this.$refs.fdgfder
                 this.post("images/base64", {
                     token: th.token,
-                    img: th.regular.welfare_first_image
+                    img: th.regular.apply_top_image
                 }, function(data) {
                     th.img_sdfe = data.img_base64
                     th.$refs.fdgfder.onload = a => {

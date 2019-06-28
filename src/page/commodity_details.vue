@@ -502,10 +502,10 @@
             cs_eer(data) {
                 this.shdz_de = data.name
                 this.shdz_de_id = data.id //获取地址id
-//                if (this.d_info.express_type == 2) {
-//                    this.popupVisible = true
-//                    this.jiali = 1
-//                }
+                //                if (this.d_info.express_type == 2) {
+                //                    this.popupVisible = true
+                //                    this.jiali = 1
+                //                }
             },
             lunbo_sd(idx) { //轮播滚到完执行
                 this.dq_lunbo = idx + 1
@@ -519,7 +519,11 @@
             },
             get_sdf() {
                 this.is_sd_fn = true
-                this.url_img = `https://api.cangniaowl.com/v1/product/goodsShareImage?goods_id=${this.$route.query.goods_id}&token=${this.token}`
+                var sd_ddr = api_url.split("/v1")[0]
+               sd_ddr = sd_ddr + `/v1/product/goodsShareImage?goods_id=${this.$route.query.goods_id}&token=${this.token}`
+
+
+                this.url_img =sd_ddr
 
             },
             gundong_w(e) {
@@ -550,14 +554,14 @@
                     if (this.$route.query.cj_m == 1) { //抽奖活动
                         checkout.story_goods = this.$route.query.story_goods
                     }
-                    if(this.d_info.express_type==1||this.d_info.express_type==2){
-                          checkout.pick_up = 1
-                          checkout.express_type=this.d_info.express_type
+                    if (this.d_info.express_type == 1 || this.d_info.express_type == 2) {
+                        checkout.pick_up = 1
+                        checkout.express_type = this.d_info.express_type
                     }
-                  
-                    
-                    
-                    
+
+
+
+
                     th.post("shopping/checkout", checkout, function(data) {
                         if (data.error_type == 1) { //限购
 

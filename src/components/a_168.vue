@@ -57,7 +57,7 @@
         },
         methods: {
 
-        },
+        }, 
         mounted() {
             var sd_ddr=api_url.split("/v1")[0]
             this.lj_sdf =sd_ddr+ `/v1/card/activity?token=${this.token}&_id=` + this.$route.query._id

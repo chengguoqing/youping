@@ -373,7 +373,7 @@
                     this.url_kh_dr.pick_up = 0
                 }
             },
-            tijiao_dd() { //提交订单按钮触发
+            tijiao_dd() { //提交订单按钮触发 
                 this.url_kh_dr.step = 2
                 this.url_kh_dr.postscript = this.postscript
                 let th = this

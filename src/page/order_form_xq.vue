@@ -147,7 +147,7 @@
 
 		<section class="mt7 bgff ">
 			<p class="d_jh_title pd mui-col-xs-6 cen brm">
-				<i class="dx icon-kefu ls fz18 cz"></i>
+			<i class="dx icon-kefu ls fz18 cz"></i>
 <!--                <span class="ls  ml5" >联系卖家</span>-->
 			<span class="ls  ml5"  @click="kefu(shop_id,goods_id)">联系卖家</span>
 			</p>
@@ -183,7 +183,7 @@
                 </span>
 
 			<span v-if="type_se==1">
-            <a class="mui-btn cz"   @click="hf('tuihuanhuo',{type:1})">申请退款</a>
+<!--            <a class="mui-btn cz"   @click="hf('tuihuanhuo',{type:1})">申请退款</a>-->
                <a class="mui-btn cz ml5 ab">提醒发货</a>
                 </span>
 
@@ -196,7 +196,7 @@
                 </span>
 
 			<span v-if="type_se==3">
-            <a class="mui-btn cz"  @click="hf('tuihuanhuo',{type:1})">申请退/换货</a>
+<!--            <a class="mui-btn cz"  @click="hf('tuihuanhuo',{type:1})">申请退/换货</a>-->
                <a class="mui-btn cz ml5 ab" @click="hf('pingjia')" v-if="orderlist_data.is_comment<=0">评价</a>
                     <a class="mui-btn cz ml5 ab" @click="hf('see_evaluation',{order_id:orderlist_data.order_id})" v-else>查看评价</a>
                 </span>
@@ -204,7 +204,7 @@
             
             
 			<span v-if="type_se==5">
-            <a class="mui-btn cz"   @click="hf('tuihuanhuo',{type:1})">申请退款</a>
+<!--            <a class="mui-btn cz"   @click="hf('tuihuanhuo',{type:1})">申请退款</a>-->
                <a class="mui-btn cz ml5 ab">去分享</a>
                 </span>
             

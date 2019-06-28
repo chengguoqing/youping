@@ -10,7 +10,7 @@
 <!--        <p class="fz12 fd_jh_drt">NO.000000</p>-->
              <p class="fz12 fd_jh_drt">&nbsp;</p>
         <section class="cen pr">
-                <section class="pr f_b">
+                <section class="pr f_b"> 
                     <img :src="regular.header_image" class="user_icon yj">
   
  
@@ -60,13 +60,12 @@
 
                 </section>
 
-
-            <section class="sd_jdd_jh_drr mt15 mui-row pt5 pm5 pr yj4" @click="haoyou_sf(friendslist2,0)">
+            <section class="sd_jdd_jh_drr mt15 mui-row pt5 pm5 pr yj4" @click="haoyou_sf(friendslist,0)">
                 <section class="mui-col-xs-3 df_jh_deertt cen">
                             <p class="erhuiyuande">
                                 会员好友
                             </p>
-                    <p class="fz12">{{friendslist2.length}}</p>
+                    <p class="fz12">{{friendslist.length}}</p>
             </section>
 
                  <section class="mui-col-xs-9  cen">
@@ -82,7 +81,7 @@
                     </section>
 
 
-                        <section class="sd_h_deer" v-if="friendslist2.length<=0">
+                        <section class="sd_h_deer" v-if="friendslist.length<=0">
                         <img src="https://mall.cangniaowl.com/static/img/168/user_icon.png">
                             <p>暂无</p>
                     </section>
@@ -423,7 +422,7 @@
                 }
                 if (ty == 3) {
                     if (this.goods_properties.length <= 0) {
-                        this.xiadand(this.regular.gift_bag_goods_id)
+                        this.xiadand(this.regular.regular_detail.welfare_goods_id)
                         return
                     }
                     this.list_mianmo_is = true
@@ -496,6 +495,7 @@
             regular._id = this.$route.query._id
             regular.time_e = new Date().getTime()
             this.post("activity/regular", regular, function(data) {
+                    th.friendslist = data.friendslist.data
                 th.regular = data
                 th.regular_detail = data.regular_detail
                 try {
@@ -535,7 +535,8 @@
                 token: this.token
             }, function(data) {
                 th.isbuy = data
-                th.friendslist = data.friendslist.data
+            
+             
                 th.friendslist2 = data.friendslist2.data
                 th.fanslist = data.fanslist.data
                 //                th.$store.state.fanslist=data.fanslist.data

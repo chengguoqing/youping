@@ -10,8 +10,8 @@
 
 				</p>
         
-        <section class="btm pd pt10 pm10 sdf_deertx">
-            <section class="pr dfgfg_Dfdr_d act" v-for="(sd,idx) in taoka" @click="hf('act_hy_tk',{_id:sd._id})" >
+        <section class="btm pd pt10 pm10 sdf_deertx" :class="sd_j_detts?'act':''">
+            <section class="pr dfgfg_Dfdr_d act" v-for="(sd,idx) in taoka" @click="sdf_dr_drt(sd,idx)" >
                     <img :src="sd.card_image" class="w100 cz yj4">
                 <section class="sd_kj_d_e">
                         <p class="cf fz16">{{sd.activity_name}}</p>
@@ -21,23 +21,7 @@
             
             <kongbai :kb="kb" v-if="taoka.length<=0"></kongbai>
             
-<!--
-            <section class="pr dfgfg_Dfdr_d act">
-                    <img src="/static/img/taoka/huika_a.png" class="w100">
-                <section class="sd_kj_d_e">
-    
-                </section>
-            </section>
-            
-            
-            <section class="pr dfgfg_Dfdr_d act">
-                    <img src="/static/img/taoka/huika_a.png" class="w100">
-                <section class="sd_kj_d_e">
-    
-                </section>
-            </section>
--->
-            
+      
     </section>
         
     </section>
@@ -53,10 +37,11 @@
         },
         data() {
             return {
+                sd_j_detts:false,
                 kb: {
                     icom: "dsf_hss_sd",
                     msg: "暂无数据~",
-                    type:3
+                    type: 3
                 },
             }
         },
@@ -64,7 +49,13 @@
             kongbai
         },
         methods: {
-
+            sdf_dr_drt(sd, idx) {
+                this.sd_j_detts=true
+                
+                this.hf('act_hy_tk', {
+                    _id: sd._id
+                })
+            }
         },
         mounted() {
 
@@ -73,9 +64,13 @@
 
 </script>
 <style>
-    .sdf_deertx .mt100{
+    .sdf_deertx .mt100 {
         margin-top: 0!important
     }
+    .sdf_deertx.act .dfgfg_Dfdr_d{
+        margin-top: 20px !important
+    }
+
 </style>
 <style scoped>
     .df_toyute_s {
@@ -99,12 +94,14 @@
         height: 100%;
         padding: 10px;
     }
-    .dfgfg_Dfdr_d{
+
+    .dfgfg_Dfdr_d {
         border-radius: 4px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.4)
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.4)
     }
+
     .dfgfg_Dfdr_d.act {
-        margin-top: -35%
+        margin-top: -27%
     }
 
     .dfgfg_Dfdr_d.act:nth-child(1) {

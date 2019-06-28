@@ -6,7 +6,7 @@
         <section class="pd fdg_jh_dedt">
             <img :src="sd.first_image" class="w100 dfg_kj_ert cz">
         </section>
-        <p class="cen mt40">
+        <p class="cen mt40" v-if='system_name!="ninehouse"'>
             <img src="https://mall.cangniaowl.com/static/img/new168/fenxiang_de.png" class="fenxiu_dert" @click="sc_tu_rf">
         </p>
         

@@ -92,6 +92,7 @@
                     th = this
                 userOwn.token = this.token
                 userOwn.status = this.status
+                  userOwn.per_page = 100
                 this.post("coupon/userOwn", userOwn, function(data) {
                     th.user_Own = data.data
 
